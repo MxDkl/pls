@@ -10,6 +10,8 @@ Installation:
 
 Requirements:
 - jq binary (commandline JSON processor)
+- curl binary (commandline HTTP client)
+- openai api key
 
 Usage:
 ```
@@ -25,4 +27,4 @@ pls zip all files in the current directory that contain the word "foo" and save 
 ```
 
 Warning:
-- dont run pls as root because it is unpredictable and could do anything
+- be careful when running as root because it is unpredictable and could do anything

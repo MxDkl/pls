@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# add your openai api key here
+token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
 # get user cli arguments as a string
 args=$*
 
@@ -9,7 +12,7 @@ cwd=$(pwd)
 # use curl to get openai api response
 response=$(curl -s https://api.openai.com/v1/chat/completions \
   -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <your openai api key>' \
+  -H 'Authorization: Bearer '$token'' \
   -d '{
   "model": "gpt-3.5-turbo",
   "messages": [{"role": "system", "content": "You are a helpful assistant. You will generate '$SHELL' commands based on user input. Your response should contain ONLY the command and NO explanation. Do NOT ever use newlines to seperate commands, instead use ; or &&. The current working directory is '$cwd'."}, {"role": "user", "content": "'"$args"'"}]
