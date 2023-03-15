@@ -3,6 +3,9 @@
 # add your openai api key here
 token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
+# disable globbing, to prevent OpenAI's command from being prematurely expanded
+set -f
+
 # get user cli arguments as a string
 args=$*
 
@@ -42,9 +45,12 @@ echo $REPLY
 echo "Executing command..."
 echo ""
 
-# save command to file, execute the command from file, remove the file
-echo $command > ".tempplscmd"
+# re-enable globbing
+set +f
+
+# execute the command
 echo -e -n "\033[0;34m" # set color to blue
-source ".tempplscmd"
+eval "$command"
+
+# navigate back to the original working directory
 cd $cwd
-rm ".tempplscmd"
