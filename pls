@@ -21,6 +21,17 @@ response=$(curl -s https://api.openai.com/v1/chat/completions \
   "messages": [{"role": "system", "content": "You are a helpful assistant. You will generate '$SHELL' commands based on user input. Your response should contain ONLY the command and NO explanation. Do NOT ever use newlines to seperate commands, instead use ; or &&. The current working directory is '$cwd'."}, {"role": "user", "content": "'"$args"'"}]
 }')
 
+# if OpenAI reported an error, tell the user, then exit the script
+error=$(echo $response | jq -r '.error.message')
+if [ "$error" != "null" ]
+then
+    echo -e -n "\033[0;31m" # set color to red
+    echo "Error from OpenAI API:"
+    echo $error
+    echo "Aborted."
+    exit 1
+fi
+
 # parse the 'content' field of the response which is in JSON format
 command=$(echo $response | jq -r '.choices[0].message.content')
 
