@@ -7,6 +7,7 @@ token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 set -f
 
 if [ -z "$1" ]; then
+  echo -e -n "\033[0;31m" # set color to red
   echo "Error: no command given."
   exit 1
 fi
