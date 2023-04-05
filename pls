@@ -6,6 +6,7 @@ token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 # disable globbing, to prevent OpenAI's command from being prematurely expanded
 set -f
 
+# exit if no command is given
 if [ -z "$1" ]; then
   echo -e -n "\033[0;31m" # set color to red
   echo "Error: no command given."
