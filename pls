@@ -6,6 +6,11 @@ token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 # disable globbing, to prevent OpenAI's command from being prematurely expanded
 set -f
 
+if [ -z "$1" ]; then
+  echo "Error: no command given."
+  exit 1
+fi
+
 # get user cli arguments as a string
 args=$*
 
