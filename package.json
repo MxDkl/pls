@@ -4,6 +4,7 @@
   "description": "Please is a CLI tool that translates natural language into shell commands.",
   "main": "./pls",
   "scripts": {
+    "pre-install": "chmod +x pls && ./bin/add-to-path.sh"
     "install": "source pls && ./bin/add-to-path.sh"
   },
   "repository": {
