@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# add your openai api key here
-token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# Load API key from .env file
+source .env
+token="${OPEN_API_KEY}"
+
 
 # disable globbing, to prevent OpenAI's command from being prematurely expanded
 set -f
