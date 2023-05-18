@@ -1,0 +1,20 @@
+{
+  "name": "pls",
+  "version": "1.0.0",
+  "description": "Please is a CLI tool that translates natural language into shell commands.",
+  "main": "./pls",
+  "scripts": {
+    "pre-install": "chmod +x pls && ./bin/add-to-path.sh"
+    "install": "source pls && ./bin/add-to-path.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizese/pls.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rizese/pls/issues"
+  },
+  "homepage": "https://github.com/rizese/pls#readme"
+}
