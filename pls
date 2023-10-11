@@ -68,7 +68,7 @@ echo ""
 set +f
 
 # execute the command
-echo -e -n "\033[0;34m" # set color to blue
+echo -e "\033[0m" # reset color
 eval "$command"
 
 # navigate back to the original working directory
