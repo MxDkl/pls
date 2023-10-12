@@ -3,9 +3,6 @@
 # add your openai api key here
 token="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-# disable globbing, to prevent OpenAI's command from being prematurely expanded
-set -f
-
 # exit if no command is given
 if [ -z "$1" ]; then
   echo -e -n "\033[0;31m" # set color to red
@@ -19,13 +16,19 @@ args=$*
 # save the current working directory to a variable
 cwd=$(pwd)
 
+# save os name to a variable
+os=$(cat /etc/*-release | grep "NAME" -m 1 | cut -d "=" -f 2 | sed 's/"//g' | tr ' ' '_')
+
+# disable globbing, to prevent OpenAI's command from being prematurely expanded
+set -f
+
 # use curl to get openai api response
 response=$(curl -s https://api.openai.com/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer '$token'' \
   -d '{
   "model": "gpt-4-0613",
-  "messages": [{"role": "system", "content": "You are a helpful assistant. You will generate '$SHELL' commands based on user input. Your response should contain ONLY the command and NO explanation. Do NOT ever use newlines to seperate commands, instead use ; or &&. The current working directory is '$cwd'."}, {"role": "user", "content": "'"$args"'"}],
+  "messages": [{"role": "system", "content": "You are a helpful assistant. You will generate '$SHELL' commands based on user input. Your response should contain ONLY the command and NO explanation. Do NOT ever use newlines to seperate commands, instead use ; or &&. The operating system is '$os'. The current working directory is '$cwd'."}, {"role": "user", "content": "'"$args"'"}],
   "temperature": 0.0
 }')
 
