@@ -4,7 +4,7 @@ Please is a CLI tool that translates natural language into shell commands.
 
 Installation:
 - clone this repo
-- add your openai api key to the pls file
+- configure your ~/.pls config file with your openai api key
 - chmod +x pls
 - add pls to your path
 
@@ -28,3 +28,14 @@ pls zip all files in the current directory that contain the word "foo" and save 
 
 Warning:
 - be careful when running as root because it is unpredictable and could do anything
+
+Configure your ~/.pls config file with your openai api key:
+```bash
+cat <<EOF > ~/.pls
+{
+"api_key": "your api key",
+"api_base": "https://api.openai.com/v1",
+"model": "gpt-4-0613"
+}
+EOF
+```
