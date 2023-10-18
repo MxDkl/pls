@@ -35,7 +35,7 @@ fi
 
 # read the api key, base url, and model from the json config
 openai_api_key=$(get_var $(jq -r '.api_key' <<< "$json_config") '')
-openai_api_base=$(get_var $(jq -r '.api_base' <<< "$json_config") 'https://api.openai.com/v1/chat/completions')
+openai_api_base=$(get_var $(jq -r '.api_base' <<< "$json_config") 'https://api.openai.com/v1')
 openai_model=$(get_var $(jq -r '.model' <<< "$json_config") 'gpt-4-0613')
 
 # check all required variables are set
@@ -53,7 +53,7 @@ args=$*
 cwd=$(pwd)
 
 # save os name to a variable
-if [[ -f /etc/-release ]]; then
+if [[ -f /etc/*-release ]]; then
     os=$(cat /etc/*-release | grep "NAME" -m 1 | cut -d "=" -f 2 | sed 's/"//g' | tr ' ' '_')
 else
   os=$(uname -s)
