@@ -27,7 +27,7 @@ response=$(curl -s https://api.openai.com/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer '$token'' \
   -d '{
-  "model": "gpt-4-0613",
+  "model": "gpt-4-1106-preview",
   "messages": [{"role": "system", "content": "You are a helpful assistant. You will generate '$SHELL' commands based on user input. Your response should contain ONLY the command and NO explanation. Do NOT ever use newlines to seperate commands, instead use ; or &&. The operating system is '$os'. The current working directory is '$cwd'."}, {"role": "user", "content": "'"$args"'"}],
   "temperature": 0.0
 }')
