@@ -17,7 +17,15 @@ args=$*
 cwd=$(pwd)
 
 # save os name to a variable
-os=$(cat /etc/*-release | grep "NAME" -m 1 | cut -d "=" -f 2 | sed 's/"//g' | tr ' ' '_')
+os=$(
+  if [ -f /etc/os-release ]; then
+    cat /etc/*-release | grep "NAME" -m 1 | cut -d "=" -f 2 | sed 's/"//g' | tr ' ' '_'
+  elif [ "$(uname -s)" = "Darwin" ]; then
+    sw_vers -productName
+  else
+    echo "unknown"
+  fi
+)
 
 # disable globbing, to prevent OpenAI's command from being prematurely expanded
 set -f
